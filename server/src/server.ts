@@ -1,11 +1,10 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { Request, Response } from "express";
+import connectDB from "./config/db";
 
 dotenv.config();
-
-const PORT = process.env.PORT || 5000;
+connectDB();
 
 const app = express();
 
@@ -17,4 +16,5 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Palladium API is running...");
 });
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
